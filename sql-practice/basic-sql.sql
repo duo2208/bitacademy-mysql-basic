@@ -19,4 +19,12 @@ insert into pets values('별이', '정서영', '말티즈', '남', '2018-01-01',
 -- select
 select * from pets;
 select name, birth from pets order by birth desc;
-select count(*) from pets;
+select count(death) from pets;
+select count(*) from pets where death is not null;
+
+-- update
+update pets set species='포메라니안' where name='폰펫';
+
+-- delete 
+delete from pets where death is not null
+
