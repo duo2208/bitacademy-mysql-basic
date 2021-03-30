@@ -17,6 +17,14 @@ select concat(first_name, ' ', last_name) as 이름, gender as 성별, hire_date
     order by hire_date asc;
 
 -- 3. 여직원과 남직원은 각 각 몇 명이나 있나요?
+select count(*)
+	from employees
+	where gender = 'M';
+
+select count(*)
+	from employees
+	where gender = 'F';
+
 -- 4. 현재 근무하고있는 직원 수는 몇 명입니까? (salaries 테이블을 사용)
 select count(DISTINCT emp_no) as '현재 근무 중인 직원 수'
 	from salaries
@@ -32,7 +40,7 @@ select count(emp_no) as '매니저의 수'
     where to_date = '9999-01-01';
 
 -- 7. 전체 부서를 출력하려고 합니다. 순서는 부서이름이 긴 순서대로 출력.
-select DISTINCT dept_name
+select dept_name
 	from departments
     order by length(dept_name) desc;
 
@@ -49,7 +57,7 @@ select distinct title, length(title) as lt
 -- 10. 현재 Enginner 직책의 사원은 총 몇 명입니까?
 select count(emp_no) as 'Enginner 직책의 사원 수'
 	from titles
-    where title like '%Engineer%';
+    where title like '%Engineer%' and to_date = '9999-01-01';
 
 -- 11. 사원이 13250(Zeydy)인 직원의 직책 변경 상황을 시간순으로 출력해보세요.
 select *
