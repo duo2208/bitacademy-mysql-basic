@@ -32,7 +32,19 @@ select emp_no, avg(salary) as avg_salary
     having avg_salary > 35000
     order by avg_salary desc;
     
--- 예제7 : 
+-- 예제7 : 사원별로 몇 번의 직책 변경이 있었는지 조회하시오.
+select emp_no, count(*) as change_titles
+	from titles
+    group by emp_no;
+    
+-- 예제8 : 현재 근속중인 직원수를 직책별로 구하되,  직원수가 100명 이상인 직책만 출력하시오.
+select title, count(*) as cnt
+	from titles
+    where to_date = '9999-01-01'
+    group by title
+	having cnt > 100
+    order by cnt desc;
+    
     
     
     
