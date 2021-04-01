@@ -183,14 +183,14 @@ select a.first_name, b.dept_no, d.dept_name, c.salary
 order by c.salary desc;
 
 -- ex5-3) 내가한거
-select concat(a.first_name, ' ', a.last_name) as name, c.dep_no, d.dept_name, max_salary
+select concat(a.first_name, ' ', a.last_name) as name, c.dept_no, d.dept_name, b.salary
 	from employees a, salaries b, dept_emp c, departments d
 	where a.emp_no = b.emp_no		-- join
 	and b.emp_no = c.emp_no			-- join
 	and c.dept_no = d.dept_no		-- join
 	and b.to_date = '9999-01-01'
 	and c.to_date = '9999-01-01'
-	and (b.dept_no, c.salary) in
+	and (b.salary, c.dept_no) in
 		(
 		select a.dept_no, max(b.salary) as max_salary
 			from dept_emp a, salaries b
@@ -198,7 +198,7 @@ select concat(a.first_name, ' ', a.last_name) as name, c.dep_no, d.dept_name, ma
 			and a.to_date = '9999-01-01'
 			and b.to_date = '9999-01-01'
 		group by a.dept_no
-		)
+		);
 
 
 
